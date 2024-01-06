@@ -437,6 +437,9 @@ defmodule Finch do
       Default value is `:infinity`.
 
   """
+  @callback request(Request.t(), name(), request_opts()) ::
+              {:ok, Response.t()}
+              | {:error, Exception.t()}
   @spec request(Request.t(), name(), request_opts()) ::
           {:ok, Response.t()}
           | {:error, Exception.t()}
@@ -491,6 +494,7 @@ defmodule Finch do
 
   See `request/3` for more detailed information.
   """
+  @callback request!(Request.t(), name(), request_opts()) :: Response.t()
   @spec request!(Request.t(), name(), request_opts()) ::
           Response.t()
   def request!(%Request{} = req, name, opts \\ []) do
